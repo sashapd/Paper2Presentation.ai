@@ -28,23 +28,22 @@ print('What paper did you forget to make slides for?')
 paper_id = input()
 pdf = fetch_paper(paper_id)
 
-# DUMMY!
 def make_slides(pdf):
     pdf_file = "output/paper.pdf"
     open(pdf_file, 'wb').write(pdf)
-    extract.extract_figures_and_text(pdf_file, 'output')
-    return gen_md.generate_md(pdf_file)
 
+    extract.extract_figures_and_text(pdf_file, 'output')
+    messages, md = gen_md.generate_md(pdf_file)
+    return messages, md
 
 def normalise_slides(md):
     md = md.strip().strip('-').strip()
     return md
 
-# DUMMY!
-def get_slide_texts(slides):
-    text = open('voiceover.md', 'r').read().splitlines()
-    # shitty heuristic: lines with over 20 chars are voiceover lines.
-    return [line for line in text if len(line) > 20]
+def get_slide_texts(voiceover):
+    # shitty heuristic: lines with over 50 chars are voiceover lines.
+    voiceover = voiceover.split('\n')
+    return [line for line in voiceover if len(line) > 50]
 
 def get_tts_resp(text):
     return client.audio.speech.create(
@@ -65,8 +64,8 @@ def generate_tts_slide(text, i):
     resp.stream_to_file(f"output/slide_{i}.mp3")
     print('out', i)
 
-def get_tts(slides):
-    texts = get_slide_texts(slides)
+def get_tts(voiceover):
+    texts = get_slide_texts(voiceover)
     threads = []
     for i, text in enumerate(texts):
         # Run in a separate thread 
@@ -78,17 +77,41 @@ def get_tts(slides):
     for thread in threads:
         thread.join()
 
+    return len(texts)
+
 client = OpenAI()
 
-with Halo(text='Generating beautiful slides...', spinner='dots'):
-    slides = make_slides(pdf)
-    slides = normalise_slides(slides)
+# with Halo(text='Generating beautiful slides...', spinner='dots'):
+spinner = Halo(text='Generating beautiful slides...', spinner='dots')
+spinner.start()
+messages, slides = make_slides(pdf)
+slides = normalise_slides(slides)
+spinner.stop_and_persist(symbol='✅')
 
 # TODO: Generate voiceover text
+spinner = Halo(text='Generating voiceover text...', spinner='dots')
+messages += [
+    {"role": "assistant", "content": slides},
+    {"role": "user", "content": "Generate a transcript of some engaging voiceover for the slides. For each slide, write about 20 seconds of useful speech as if presenting this as a lightning talk at a conference. Take the text already on each slide for granted, complementing it with an explanation. Don't say 'Slide X', just separate the slides with newlines."},
+]
+completion = client.chat.completions.create(
+    model="gpt-4-1106-preview",
+    messages=messages,
+    max_tokens=4096
+)
 
-with Halo(text='Generating slide layout...', spinner='dots'):
-    open('output/slides_normed.md', 'w').write(slides)
-    os.system("darkslide output/slides_normed.md -i")
+voiceover = completion.choices[0].message.content
+print(voiceover)
+spinner.stop_and_persist(symbol='✅')
 
-with Halo(text='Generating engaging voiceover...', spinner='dots'):
-    get_tts(None)
+# with Halo(text='Generating slide layout...', spinner='dots'):
+spinner = Halo(text='Generating slide layout...', spinner='dots')
+spinner.start()
+open('output/slides_normed.md', 'w').write(slides)
+os.system("darkslide output/slides_normed.md -i")
+spinner.stop_and_persist(symbol='✅')
+
+spinner = Halo(text='Generating voiceover (in parallel)...', spinner='dots')
+spinner.start()
+n_slides = get_tts(voiceover)
+spinner.stop_and_persist(symbol='✅')
