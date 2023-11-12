@@ -1,17 +1,35 @@
 from openai import OpenAI
 import os
 
+import glob
+
+
+def list_image_files(directory):
+    # Define the image file extensions
+    extensions = ['*.jpg', '*.jpeg', '*.png', '*.gif', '*.bmp']
+
+    # List to hold all image file names
+    image_files = []
+
+    # Loop through each extension and add the files to the list
+    for ext in extensions:
+        image_files.extend(glob.glob(os.path.join(directory, ext)))
+
+    return image_files
+
 def generate_md(pdf_file):
     client = OpenAI(api_key=os.getenv("OPENAI_API_KEY") or "YOUR_KEY_HERE")
 
-    promt = """
+    promt = f"""
     You are a scientific paper to presentation creator. Read the pdf provided and generate the summary in 6 slides in markdown format.
 
     Specifically, use: --- to delimit a new slide
     # to delimit a slide title
-    standard subheadings and bullet points from markdown
 
-    [[image2_3.png]] to insert third image from page 2 on this slide.
+    Standard subheadings and bullet points from markdown.
+    To insert an image use markdown "![image info](PATH)". Example: ![image info](image2_3.png) to insert third image from page 2 on this slide.
+    Following images are vailable: {list_image_files("output")}
+    On the slides with images don't use a lot of text, but still have some, because images take a lot of space.
 
     Do not write anything else, such as "Slide 1". Make sure the first slide is a title slide, showing the name of the paper and authors.
 
