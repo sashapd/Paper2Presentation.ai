@@ -39,7 +39,7 @@ def extract_text(pdf_path, output_dir):
     doc.close()
 
 if __name__ == '__main__':
-    extract_text('2310.06825.pdf', 'output')
-    process_files_in_order('paper', 'output')
+    extract_text('1706.03762.pdf', 'output')
+    process_files_in_order('mistral', 'output')
     
 

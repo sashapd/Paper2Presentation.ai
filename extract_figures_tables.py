@@ -35,6 +35,7 @@ def process_files_in_order(input_directory, output_directory):
     if main_file:
         main_file_path = os.path.join(input_directory, main_file)
         referenced_files = extract_referenced_files(main_file_path)
+        referenced_files.append(main_file)
         table_count = 1
         figure_count = 1
         for ref_file in referenced_files:
@@ -61,26 +62,47 @@ def process_tex_files(input_directory, output_directory):
             )
 
 
-def process_tex_file(
-    tex_file_path, output_directory, table_count, figure_count, input_directory
-):
+def process_tex_file(tex_file_path, output_directory, table_count, figure_count, input_directory):
     with open(tex_file_path, "r") as file:
         latex_content = file.read()
 
     walker = LatexWalker(latex_content)
     nodes, _, _ = walker.get_latex_nodes(pos=0)
 
+    table_count, figure_count = process_nodes(nodes, tex_file_path, output_directory, table_count, figure_count, input_directory, latex_content)
+    return table_count, figure_count
+
+def process_nodes(nodes, tex_file_path, output_directory, table_count, figure_count, input_directory, latex_content):
     for node in nodes:
         if isinstance(node, LatexEnvironmentNode):
-            if node.environmentname == "figure*" or node.environmentname == "figure":
-                figure_count = process_figure(
-                    node, tex_file_path, output_directory, input_directory, figure_count
-                )
+            if node.environmentname in ["figure", "figure*"]:
+                figure_count = process_figure(node, tex_file_path, output_directory, input_directory, figure_count)
             elif node.environmentname == "table":
-                table_count = process_table(
-                    node, output_directory, table_count, latex_content
-                )
+                table_count = process_table(node, output_directory, table_count, latex_content)
+            # Recursively process child nodes
+            table_count, figure_count = process_nodes(node.nodelist, tex_file_path, output_directory, table_count, figure_count, input_directory, latex_content)
+        elif isinstance(node, LatexMacroNode) and node.macroname == "includegraphics":
+            figure_count = process_standalone_figure(node, tex_file_path, output_directory, input_directory, figure_count)
+        # Add other conditions as needed
     return table_count, figure_count
+
+
+def process_standalone_figure(node, tex_file_path, output_directory, input_directory, figure_count):
+    fig_path = extract_figure_path_from_macro(node, input_directory)
+    if fig_path:
+        # Assuming no caption for standalone figures
+        save_figure(fig_path, f"figure_{figure_count}", "", output_directory)
+        figure_count += 1
+    return figure_count
+
+
+def extract_figure_path_from_macro(node, input_dir):
+    if node.nodeargd and node.nodeargd.argnlist and len(node.nodeargd.argnlist) > 0:
+        fig_path = node.nodeargd.argnlist[0].nodelist[0].latex_verbatim().strip()
+        full_path = os.path.join(input_dir, fig_path)
+        if os.path.isfile(full_path):
+            return full_path
+    return None
 
 
 def process_figure(
@@ -297,6 +319,6 @@ def save_figure(source_path, label, caption, output_directory):
 
 if __name__ == "__main__":
     # Replace these with the paths to your input and output directories
-    input_directory_path = "paper"
+    input_directory_path = "mistral"
     output_directory_path = "output"
     process_files_in_order(input_directory_path, output_directory_path)

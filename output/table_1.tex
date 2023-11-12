@@ -14,40 +14,20 @@
 \geometry{left=1cm, right=1cm, top=2cm, bottom=2cm}
 \pagestyle{empty}
 \begin{document}
-\begin{table}[t]
-\caption{
-  Maximum path lengths, per-layer complexity and minimum number of sequential operations for different layer types. $n$ is the sequence length, $d$ is the representation dimension, $k$ is the kernel size of convolutions and $r$ the size of the neighborhood in restricted self-attention.}
-  %Attention models are quite efficient for cross-positional communications when sequence length is smaller than channel depth.
-\label{tab:op_complexities}
-\begin{center}
-\vspace{-1mm}
-%\scalebox{0.75}{
-
-\begin{tabular}{lccc}
+\begin{table}
+{\scriptsize
+\centering
+\begin{tabular}{@{}lccccccccccccc@{}}
 \toprule
-Layer Type & Complexity per Layer & Sequential & Maximum Path Length  \\
-           &             & Operations &   \\
-\hline
-\rule{0pt}{2.0ex}Self-Attention & $O(n^2 \cdot d)$ & $O(1)$ & $O(1)$ \\
-Recurrent & $O(n \cdot d^2)$ & $O(n)$ & $O(n)$ \\
-
-Convolutional & $O(k \cdot n \cdot d^2)$ & $O(1)$ & $O(log_k(n))$ \\
-%\cmidrule
-Self-Attention (restricted)& $O(r \cdot n \cdot d)$ & $O(1)$ & $O(n/r)$ \\
-
-%Convolutional (separable) & $O(k \cdot n \cdot d + n \cdot d^2)$ & $O(1)$ & $O(log_k(n))$ \\
-
-%Position-wise Feed-Forward & $O(n \cdot d^2)$ & $O(1)$ & $\infty$ \\
-
-%Fully Connected & $O(n^2 \cdot d^2)$ & $O(1)$ & $O(1)$ \\
-%Convolutional (separable) & $O(k \cdot n \cdot d + n \cdot d^2)$ & $O(1)$ & $O(log_k(n))$ \\
-
-%Position-wise Feed-Forward & $O(n \cdot d^2)$ & $O(1)$ & $\infty$ \\
-
-%Fully Connected & $O(n^2 \cdot d^2)$ & $O(1)$ & $O(1)$ \\
-\bottomrule
+Model         & Modality   & MMLU            & HellaSwag       & WinoG      & PIQA            & Arc-e           & Arc-c           & NQ              & TriviaQA        & HumanEval       & MBPP            & MATH            & GSM8K           \\ \midrule
+LLaMA 2 7B    & Pretrained & 44.4\%          & 77.1\%          & 69.5\%          & 77.9\%          & 68.7\%          & 43.2\%          & 24.7\%          & 63.8\%          & 11.6\%          & 26.1\%          & 3.9\%           & 16.0\%          \\
+LLaMA 2 13B   & Pretrained & 55.6\%          & \textbf{80.7\%} & 72.9\%          & 80.8\%          & 75.2\%          & 48.8\%          & \textbf{29.0\%} & \textbf{69.6\%} & 18.9\%          & 35.4\%          & 6.0\%           & 34.3\%          \\ \midrule
+Code-\llama 7B & Finetuned  & 36.9\%          & 62.9\%          & 62.3\%          & 72.8\%          & 59.4\%          & 34.5\%          & 11.0\%          & 34.9\%          & \textbf{31.1\%} & \textbf{52.5\%} & 5.2\%           & 20.8\%          \\ \midrule
+\mistral    & Pretrained & \textbf{60.1\%} & \textbf{81.3\%} & \textbf{75.3\%} & \textbf{83.0\%} & \textbf{80.0\%} & \textbf{55.5\%} & \textbf{28.8\%} & \textbf{69.9\%} & \textbf{30.5\%} & 47.5\%          & \textbf{13.1\%} & \textbf{52.2\%} \\ \bottomrule
 \end{tabular}
-%}
-\end{center}
+}
+\vspace{4pt}
+\caption{\small \textbf{Comparison of \mistral with \llama.} \mistral outperforms \llama 2 13B on all metrics, and approaches the code performance of Code-\llama 7B without sacrificing performance on non-code benchmarks.}
+\label{tab:results}
 \end{table}
 \end{document}
