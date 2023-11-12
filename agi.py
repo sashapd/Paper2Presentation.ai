@@ -7,6 +7,8 @@ import threading
 import re
 import requests
 client = OpenAI()
+import gen_md
+import extract
 
 def fetch_paper(paper_id):
     # examples:
@@ -28,7 +30,11 @@ pdf = fetch_paper(paper_id)
 
 # DUMMY!
 def make_slides(pdf):
-    return open('slides.md', 'r').read()
+    pdf_file = "output/paper.pdf"
+    open(pdf_file, 'wb').write(pdf)
+    extract.extract_figures_and_text(pdf_file, 'output')
+    return gen_md.generate_md(pdf_file)
+
 
 def normalise_slides(md):
     md = md.strip().strip('-').strip()
