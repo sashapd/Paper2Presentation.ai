@@ -92,4 +92,3 @@ with Halo(text='Generating slide layout...', spinner='dots'):
 
 with Halo(text='Generating engaging voiceover...', spinner='dots'):
     get_tts(None)
-
