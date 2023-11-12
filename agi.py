@@ -46,14 +46,6 @@ def get_slide_texts(voiceover):
     voiceover = voiceover.split('\n')
     return [line for line in voiceover if len(line) > 50]
 
-def get_tts_resp(text):
-    return client.audio.speech.create(
-        model="tts-1",
-        voice="alloy",
-        input=text,
-        speed=1.15, 
-    )
-
 def generate_tts_slide(text, i):
     resp = client.audio.speech.create(
             model="tts-1",
@@ -116,3 +108,6 @@ spinner = Halo(text='Generating voiceover (in parallel)...', spinner='dots')
 spinner.start()
 n_slides = get_tts(voiceover)
 spinner.stop_and_persist(symbol='✅')
+
+import agiplay
+agiplay.run_presentation(n_slides)
