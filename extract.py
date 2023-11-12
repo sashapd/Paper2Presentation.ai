@@ -38,6 +38,6 @@ def extract_figures_and_text(pdf_path, output_dir):
     doc.close()
 
 if __name__ == '__main__':
-    extract_figures_and_text('1706.03762.pdf', 'output')
+    extract_figures_and_text('2310.06825.pdf', 'output')
     
 
