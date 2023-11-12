@@ -1,0 +1,50 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{geometry}
+\geometry{left=1cm, right=1cm, top=2cm, bottom=2cm}
+\pagestyle{empty}
+\begin{document}
+\begin{table}[t]
+\begin{center}
+\caption{The Transformer achieves better BLEU scores than previous state-of-the-art models on the English-to-German and English-to-French newstest2014 tests at a fraction of the training cost.  }
+\label{tab:wmt-results}
+\vspace{-2mm}
+%\scalebox{1.0}{
+\begin{tabular}{lccccc}
+\toprule
+\multirow{2}{*}{\vspace{-2mm}Model} & \multicolumn{2}{c}{BLEU} & & \multicolumn{2}{c}{Training Cost (FLOPs)} \\
+\cmidrule{2-3} \cmidrule{5-6} 
+& EN-DE & EN-FR & & EN-DE & EN-FR \\ 
+\hline
+ByteNet \citep{NalBytenet2017} & 23.75 & & & &\\
+Deep-Att + PosUnk \citep{DBLP:journals/corr/ZhouCWLX16} & & 39.2 & & & $1.0\cdot10^{20}$ \\
+GNMT + RL \citep{wu2016google} & 24.6 & 39.92 & & $2.3\cdot10^{19}$  & $1.4\cdot10^{20}$\\
+ConvS2S \citep{JonasFaceNet2017} & 25.16 & 40.46 & & $9.6\cdot10^{18}$ & $1.5\cdot10^{20}$\\
+MoE \citep{shazeer2017outrageously} & 26.03 & 40.56 & & $2.0\cdot10^{19}$ & $1.2\cdot10^{20}$ \\
+\hline
+\rule{0pt}{2.0ex}Deep-Att + PosUnk Ensemble \citep{DBLP:journals/corr/ZhouCWLX16} & & 40.4 & & &
+ $8.0\cdot10^{20}$ \\
+GNMT + RL Ensemble \citep{wu2016google} & 26.30 & 41.16 & & $1.8\cdot10^{20}$  & $1.1\cdot10^{21}$\\
+ConvS2S Ensemble \citep{JonasFaceNet2017} & 26.36 & \textbf{41.29} & & $7.7\cdot10^{19}$ & $1.2\cdot10^{21}$\\
+\specialrule{1pt}{-1pt}{0pt}
+\rule{0pt}{2.2ex}Transformer (base model) & 27.3 & 38.1 & & \multicolumn{2}{c}{\boldmath$3.3\cdot10^{18}$}\\
+Transformer (big) & \textbf{28.4} & \textbf{41.8} & & \multicolumn{2}{c}{$2.3\cdot10^{19}$} \\
+%\hline
+%\specialrule{1pt}{-1pt}{0pt}
+%\rule{0pt}{2.0ex}
+\bottomrule
+\end{tabular}
+%}
+\end{center}
+\end{table}
+\end{document}
