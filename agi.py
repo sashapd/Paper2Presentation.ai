@@ -32,7 +32,8 @@ def make_slides(pdf):
     pdf_file = "output/paper.pdf"
     open(pdf_file, 'wb').write(pdf)
 
-    extract.extract_figures_and_text(pdf_file, 'output')
+    extract.extract_text(pdf_file, 'output')
+    extract.process_files_in_order('paper', 'output')
     messages, md = gen_md.generate_md(pdf_file)
     return messages, md
 

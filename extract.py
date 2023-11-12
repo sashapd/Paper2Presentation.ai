@@ -1,4 +1,5 @@
 import fitz  # PyMuPDF
+from extract_figures_tables import process_files_in_order
 
 def extract_images_from_page(doc, page, output_dir):
     """Extracts images from a given page."""
@@ -20,14 +21,14 @@ def extract_text_from_page(page):
     text = page.get_text("text")
     return text
 
-def extract_figures_and_text(pdf_path, output_dir):
+def extract_text(pdf_path, output_dir):
     doc = fitz.open(pdf_path)
     for page_num in range(len(doc)):
         page = doc.load_page(page_num)
         
         # Extract images
-        images = extract_images_from_page(doc, page, output_dir)
-        print(f"Extracted images from page {page_num + 1}: {images}")
+        # images = extract_images_from_page(doc, page, output_dir)
+        # print(f"Extracted images from page {page_num + 1}: {images}")
 
         # Extract text
         text = extract_text_from_page(page)
@@ -38,6 +39,7 @@ def extract_figures_and_text(pdf_path, output_dir):
     doc.close()
 
 if __name__ == '__main__':
-    extract_figures_and_text('2310.06825.pdf', 'output')
+    extract_text('2310.06825.pdf', 'output')
+    process_files_in_order('paper', 'output')
     
 
