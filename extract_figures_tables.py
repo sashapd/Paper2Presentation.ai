@@ -10,6 +10,42 @@ from pylatexenc.latexwalker import (
 from PIL import Image
 
 
+def find_main_tex_file(directory):
+    for filename in os.listdir(directory):
+        if filename.endswith('.tex'):
+            with open(os.path.join(directory, filename), 'r') as file:
+                if '\\documentclass{' in file.read():
+                    return filename
+    return None
+
+
+def extract_referenced_files(main_file_path):
+    referenced_files = []
+    with open(main_file_path, 'r') as file:
+        for line in file:
+            if '\\input{' in line or '\\include{' in line:
+                # Extract the file reference from the line
+                ref_file = line.split('{')[1].split('}')[0] + '.tex'
+                referenced_files.append(ref_file)
+    return referenced_files
+
+
+def process_files_in_order(input_directory, output_directory):
+    main_file = find_main_tex_file(input_directory)
+    if main_file:
+        main_file_path = os.path.join(input_directory, main_file)
+        referenced_files = extract_referenced_files(main_file_path)
+        table_count = 1
+        figure_count = 1
+        for ref_file in referenced_files:
+            ref_file_path = os.path.join(input_directory, ref_file)
+            # Now process each referenced file
+            table_count, figure_count = process_tex_file(
+                ref_file_path, output_directory, table_count, figure_count, input_directory
+            )
+
+
+
 def process_tex_files(input_directory, output_directory):
     table_count = 1
     figure_count = 1
@@ -259,7 +295,8 @@ def save_figure(source_path, label, caption, output_directory):
         print(f"Warning: Figure file not found at {source_path}")
 
 
-# Replace these with the paths to your input and output directories
-input_directory_path = "paper"
-output_directory_path = "output"
-process_tex_files(input_directory_path, output_directory_path)
+if __name__ == "__main__":
+    # Replace these with the paths to your input and output directories
+    input_directory_path = "paper"
+    output_directory_path = "output"
+    process_files_in_order(input_directory_path, output_directory_path)

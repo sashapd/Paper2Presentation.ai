@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.6)  11 NOV 2023 17:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.6)  11 NOV 2023 18:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -414,10 +414,8 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 23.
 ! Undefined control sequence.
-<recently read> \dmodel 
-                        
-l.25  & \multirow{2}{*}{$\dmodel$}
-                                   & \multirow{2}{*}{$\dff$} &
+l.29 ByteNet \citep
+                   {NalBytenet2017} & 23.75 & & & &\\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -425,43 +423,99 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-<recently read> \dff 
-                     
-l.25 ...2}{*}{$\dmodel$} & \multirow{2}{*}{$\dff$}
-                                                   &
+l.30 Deep-Att + PosUnk \citep
+                             {DBLP:journals/corr/ZhouCWLX16} & & 39.2 & & & ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-[1
+! Undefined control sequence.
+l.31 GNMT + RL \citep
+                     {wu2016google} & 24.6 & 39.92 & & $2.3\cdot10^{19}$  & ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
-{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+! Undefined control sequence.
+l.32 ConvS2S \citep
+                   {JonasFaceNet2017} & 25.16 & 40.46 & & $9.6\cdot10^{18}$ ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.33 MoE \citep
+               {shazeer2017outrageously} & 26.03 & 40.56 & & $2.0\cdot10^{19...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.35 ...t}{2.0ex}Deep-Att + PosUnk Ensemble \citep
+                                                  {DBLP:journals/corr/ZhouCW...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.37 GNMT + RL Ensemble \citep
+                              {wu2016google} & 26.30 & 41.16 & & $1.8\cdot10...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.38 ConvS2S Ensemble \citep
+                            {JonasFaceNet2017} & 26.36 & \textbf{41.29} & & ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[1{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 (output/table_2.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `table_2.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 10537 strings out of 478268
- 171595 string characters out of 5846348
- 463963 words of memory out of 5000000
- 28642 multiletter control sequences out of 15000+600000
- 470798 words of font info for 30 fonts, out of 8000000 for 9000
+ 10553 strings out of 478268
+ 171777 string characters out of 5846348
+ 466963 words of memory out of 5000000
+ 28650 multiletter control sequences out of 15000+600000
+ 473555 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,12n,63p,384b,329s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 60i,11n,63p,379b,358s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
-</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
-/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></u
-sr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
-/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/lo
-cal/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loc
-al/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local
-/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on output/table_2.pdf (1 page, 77625 bytes).
+</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb>
+</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><
+/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></u
+sr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
+r/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></us
+r/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
+local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/loc
+al/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loca
+l/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/
+texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on output/table_2.pdf (1 page, 104930 bytes).
 PDF statistics:
- 50 PDF objects out of 1000 (max. 8388607)
- 32 compressed objects within 1 object stream
- 3 named destinations out of 1000 (max. 500000)
+ 64 PDF objects out of 1000 (max. 8388607)
+ 40 compressed objects within 1 object stream
+ 2 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

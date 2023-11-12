@@ -14,43 +14,27 @@
 \geometry{left=1cm, right=1cm, top=2cm, bottom=2cm}
 \pagestyle{empty}
 \begin{document}
-\begin{table}[t]
+\begin{table}[h]
+\caption{Replacing the position-wise feed-forward networks with multihead-attention-over-parameters produces similar results to the base model.  All metrics are on the English-to-German translation development set, newstest2013.}
+\label{tab:parameter_attention}
 \begin{center}
-\caption{The Transformer generalizes well to English constituency parsing (Results are on Section 23 of WSJ)}
-\label{tab:parsing-results}
 \vspace{-2mm}
 %\scalebox{1.0}{
-\begin{tabular}{c|c|c}
-\hline
-{\bf Parser}  & {\bf Training} & {\bf WSJ 23 F1} \\ \hline
-Vinyals \& Kaiser el al. (2014) \cite{KVparse15}
-  & WSJ only, discriminative & 88.3 \\
-Petrov et al. (2006) \cite{petrov-EtAl:2006:ACL}
-  & WSJ only, discriminative & 90.4 \\
-Zhu et al. (2013) \cite{zhu-EtAl:2013:ACL}
-  & WSJ only, discriminative & 90.4   \\
-Dyer et al. (2016) \cite{dyer-rnng:16}
-  & WSJ only, discriminative & 91.7   \\
-\specialrule{1pt}{-1pt}{0pt}
-Transformer (4 layers)  &  WSJ only, discriminative & 91.3 \\
-\specialrule{1pt}{-1pt}{0pt}   
-Zhu et al. (2013) \cite{zhu-EtAl:2013:ACL}
-  & semi-supervised & 91.3 \\
-Huang \& Harper (2009) \cite{huang-harper:2009:EMNLP}
-  & semi-supervised & 91.3 \\
-McClosky et al. (2006) \cite{mcclosky-etAl:2006:NAACL}
-  & semi-supervised & 92.1 \\
-Vinyals \& Kaiser el al. (2014) \cite{KVparse15}
-  & semi-supervised & 92.1 \\
-\specialrule{1pt}{-1pt}{0pt}
-Transformer (4 layers)  & semi-supervised & 92.7 \\
-\specialrule{1pt}{-1pt}{0pt}   
-Luong et al. (2015) \cite{multiseq2seq}
-  & multi-task & 93.0   \\
-Dyer et al. (2016) \cite{dyer-rnng:16}
-  & generative & 93.3   \\
+\begin{tabular}{c|cccccc|cccc}
+\hline\rule{0pt}{2.0ex}
+ & \multirow{2}{*}{$\dmodel$} & \multirow{2}{*}{$\dff$} &
+\multirow{2}{*}{$h_p$} & \multirow{2}{*}{$d_{pk}$} & \multirow{2}{*}{$d_{pv}$} &
+ \multirow{2}{*}{$n_p$} &
+ PPL & BLEU & params & training\\
+ & & & & & &  & (dev) & (dev) & $\times10^6$ & time \\
+\hline\rule{0pt}{2.0ex}
+base & 512 & 2048 & & & & & 4.92 & 25.8 & 65 & 12 hours\\
+\hline\rule{0pt}{2.0ex}
+AOP$_1$ & 512 & & 8 & 64 & 64 & 1536 & 4.92& 25.5  & 65 & 16 hours\\
+AOP$_2$ & 512 & & 16 & 64 & 64 & 512 & \textbf{4.86} & \textbf{25.9}  & 65 & 16 hours \\
 \hline
 \end{tabular}
+%}
 \end{center}
 \end{table}
 \end{document}

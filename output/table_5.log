@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.6)  11 NOV 2023 17:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.6)  11 NOV 2023 18:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -413,64 +413,58 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 23.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 23.
+! Undefined control sequence.
+<recently read> \dmodel 
+                        
+l.25  & \multirow{2}{*}{$\dmodel$}
+                                   & \multirow{2}{*}{$\dff$} &
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
-LaTeX Warning: Citation `KVparse15' on page 1 undefined on input line 26.
+! Undefined control sequence.
+<recently read> \dff 
+                     
+l.25 ...2}{*}{$\dmodel$} & \multirow{2}{*}{$\dff$}
+                                                   &
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
+[1
 
-LaTeX Warning: Citation `petrov-EtAl:2006:ACL' on page 1 undefined on input lin
-e 28.
-
-
-LaTeX Warning: Citation `zhu-EtAl:2013:ACL' on page 1 undefined on input line 3
-0.
-
-
-LaTeX Warning: Citation `dyer-rnng:16' on page 1 undefined on input line 32.
-
-
-LaTeX Warning: Citation `zhu-EtAl:2013:ACL' on page 1 undefined on input line 3
-7.
-
-
-LaTeX Warning: Citation `huang-harper:2009:EMNLP' on page 1 undefined on input 
-line 39.
-
-
-LaTeX Warning: Citation `mcclosky-etAl:2006:NAACL' on page 1 undefined on input
- line 41.
-
-
-LaTeX Warning: Citation `KVparse15' on page 1 undefined on input line 43.
-
-
-LaTeX Warning: Citation `multiseq2seq' on page 1 undefined on input line 48.
-
-
-LaTeX Warning: Citation `dyer-rnng:16' on page 1 undefined on input line 50.
-
-[1{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 (output/table_5.aux)
 
-LaTeX Warning: There were undefined references.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 Package rerunfilecheck Info: File `table_5.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 10534 strings out of 478268
- 171573 string characters out of 5846348
- 462844 words of memory out of 5000000
- 28640 multiletter control sequences out of 15000+600000
+ 10538 strings out of 478268
+ 171616 string characters out of 5846348
+ 463844 words of memory out of 5000000
+ 28643 multiletter control sequences out of 15000+600000
  470798 words of font info for 30 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,9n,63p,265b,358s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 60i,12n,63p,384b,329s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
-</usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></
-usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on output/table_5.pdf (1 page, 40579 bytes).
+</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></u
+sr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
+/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/lo
+cal/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loc
+al/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local
+/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on output/table_5.pdf (1 page, 77625 bytes).
 PDF statistics:
- 24 PDF objects out of 1000 (max. 8388607)
- 16 compressed objects within 1 object stream
- 2 named destinations out of 1000 (max. 500000)
+ 50 PDF objects out of 1000 (max. 8388607)
+ 32 compressed objects within 1 object stream
+ 3 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
